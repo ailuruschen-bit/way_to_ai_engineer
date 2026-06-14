@@ -2,31 +2,29 @@
 
 ## Current position
 
-Stage 1, Unit 1.3 (async/asyncio) - IN PROGRESS, not yet started by me.
+Stage 1, Unit 1.4 (type hints + mypy --strict) - NEXT.
 
 ## Completed
 
 - 1.1 decorators - done - timer decorator, `*args/**kwargs`, `functools.wraps`, `perf_counter`
 - 1.2 generators - done - fibonacci (tuple-swap, lazy), `running_average` via `send()`
+- 1.3 async/asyncio - done - coroutine vs thread model, `await`, `asyncio.sleep`, `create_task`, `gather`, order preservation, concurrency timing test
 - 1.5 context managers - done - `timer_context` + `suppress_errors` via `@contextmanager`
 
 ## Next task brief (give me this, then wait)
 
-Implement in `stage1_idiomatic_python/unit_1_3_async/async_basics.py`:
+Start Stage 1, Unit 1.4: type hints + mypy --strict.
 
-1. `async fetch_simulated(url: str, delay: float) -> str`
-   - await `asyncio.sleep`
-   - return `f"response from {url}"`
-2. `async fetch_all(urls: list[str]) -> list[str]`
-   - fetch all concurrently via `asyncio.gather`
-   - use `delay=0.1` for each URL
-   - total time should be about 0.1s, not `n * 0.1s`
-   - preserve input order in the returned list
-3. Add a `main()` run via `asyncio.run`.
-4. Add tests with `pytest-asyncio` (`uv add --dev pytest-asyncio`).
+First, inspect the current mypy errors across completed Stage 1 units. Then teach:
+
+- Python type hints are mostly static documentation for tools, not runtime enforcement.
+- `Any` is an escape hatch and should be rare.
+- Generics such as `list[int]`, `dict[str, int]`, `Callable`, `Iterator`, `Generator`, and `ContextManager`.
+- Why mypy strict catches ambiguous APIs earlier than tests.
+
+Task should focus on adding correct annotations to previous unit functions and tests without changing behavior. Make me predict at least two mypy failures before running.
 
 ## Backlog
 
-- 1.4 type hints + mypy --strict
 - 1.6 comprehensions & functional tools
 - 1.7 packaging, project structure, testing
