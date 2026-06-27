@@ -1,18 +1,19 @@
 import time
 from decorators import timer
+from typing import Any
 
 
-def test_timer_returns_correct_value():
+def test_timer_returns_correct_value() -> None:
     @timer
-    def add(a, b):
+    def add(a: int, b: int) -> int:
         return a + b
     
     assert add(123, 234) == 357
 
 
-def test_timer_prints_elapsed_time(capsys):
+def test_timer_prints_elapsed_time(capsys: Any) -> None:
     @timer
-    def sleep_function():
+    def sleep_function() -> None:
         time.sleep(0.02)
     
     sleep_function()
@@ -22,9 +23,9 @@ def test_timer_prints_elapsed_time(capsys):
     assert captured.out.endswith("s\n")
 
 
-def test_timer_preserves_function_name():
+def test_timer_preserves_function_name() -> None:
     @timer
-    def business_logic():
+    def business_logic() -> None:
         """This is a very important business logic."""
         pass
 
@@ -32,9 +33,9 @@ def test_timer_preserves_function_name():
     assert business_logic.__doc__ == "This is a very important business logic."
 
 
-def test_timer_handles_args_and_kwargs():
+def test_timer_handles_args_and_kwargs() -> None:
     @timer
-    def mix_cal(a, b, multiply=False):
+    def mix_cal(a: int, b: int, multiply: bool = False) -> int:
         if multiply:
             return a * b
         return a + b

@@ -11,12 +11,14 @@ Async understood conceptually from JavaScript only.
 - Picks up idioms fast once shown (tuple-swap, ternary, `isinstance` with tuple).
 - Improved async mental model from "thread-like" to cooperative event-loop scheduling; can explain that scheduling is not execution.
 - Responds well to review by tightening tests from loose substring checks to exact expected output.
+- Corrected strict typing mistakes after review; now understands `type[Exception]` vs `Exception`, decorator typing with `ParamSpec`/`TypeVar`, and generator type parameters.
 
 ## Weaknesses (watch)
 
 - Java habits: verbose temp variables, occasional dead code in exception handling.
 - Predicting program output precisely - improving, but still force predictions before running.
 - Technical wording sometimes overgeneralizes (`external task` vs `external operation`, "like thread" analogy needs boundaries).
+- Formatting/style cleanup still trails logic correctness; watch spaces around annotations, import grouping, and trailing whitespace.
 
 ## Goals
 

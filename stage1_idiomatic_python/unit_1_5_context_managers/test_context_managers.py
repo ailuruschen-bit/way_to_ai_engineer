@@ -1,13 +1,16 @@
-from context_managers import timer_context, suppress_errors
 import time
+from context_managers import timer_context, suppress_errors
+from typing import Any
 
-def test_timer_context(capsys):
+
+def test_timer_context(capsys: Any) -> None:
     with timer_context("data loading"):
         time.sleep(0.05)
     captured = capsys.readouterr()
     assert "data loading took" in captured.out
 
-def test_timer_context_exception(capsys):
+
+def test_timer_context_exception(capsys: Any) -> None:
     try:
         with timer_context("data loading but err"):
             time.sleep(0.05)
@@ -17,7 +20,8 @@ def test_timer_context_exception(capsys):
     captured = capsys.readouterr()
     assert "data loading but err took" in captured.out
 
-def test_suppress_errors(capsys):
+
+def test_suppress_errors(capsys: Any) -> None:
     try:
         with suppress_errors(TypeError, ValueError):
             int("not a number")

@@ -2,10 +2,16 @@
 # Write your solution here.
 import time
 from functools import wraps
+from typing import Callable, ParamSpec, TypeVar
 
-def timer(func):
+
+P = ParamSpec('P')
+R = TypeVar('R')
+
+
+def timer(func: Callable[P, R]) -> Callable[P, R]:
     @wraps(func)
-    def wrapper(*args, **kwargs):
+    def wrapper(*args: P.args, **kwargs: P.kwargs) -> R:
         start = time.perf_counter()
         result = func(*args, **kwargs)
         elapsed = time.perf_counter() - start
